@@ -18,10 +18,20 @@ const checkWin = () => {
             for(let box of boxes){
                 box.disabled=true;
             }
-            return;
+            return true;
         }
     }
 };
+ const checkDraw = () =>
+    {    let b=true;
+        for(box of boxes){
+            if(box.innerText=='')
+                b=false;
+        }
+        if(b){
+            alert('DRAW')
+        }
+    }
 
 boxes.forEach((box) => {
     box.addEventListener('click', () => {
@@ -34,8 +44,8 @@ boxes.forEach((box) => {
                 turnO = true;
             }
             box.disabled = true;
-            checkWin(); // Call the checkWin function after each move
-
+            if(!checkWin()) // Call the checkWin function after each move
+             checkDraw();
 
         }
     });
